@@ -1,32 +1,23 @@
 @startuml
 
-
-package "Database Tables" {
-    class FacesTable {
-        + id : int
-        + idusers : int
-        + faces : mediumtext
+package "MongoDB Collections" {
+    class UsersCollection {
+        + _id : ObjectId
+        + nome : String
+        + registro : String
+        + email : String
+        + senha : String
+        + cadastro : Date
+        + rostos : Array
     }
-    class PresencasTable {
-        + id : int
-        + id_usuario : int
-        + data_hora : datetime
-        + tipo : char
-    }
-    class UsersTable {
-        + id : int
-        + nome : varchar
-        + registro : varchar
-        + email : varchar
-        + senha : text
-        + cadastro : datetime
+    class PresencesCollection {
+        + _id : ObjectId
+        + idUsuario : ObjectId
+        + data_hora : Date
+        + tipo : String
     }
 }
 
-
-UsersTable "1" -- "n" FacesTable : has >
-UsersTable "1" -- "n" PresencasTable : has >
-
-
+UsersCollection "1" -- "n" PresencesCollection : has >
 
 @enduml

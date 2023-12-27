@@ -33,7 +33,7 @@ A API do servidor só aceita requisições do domínio rest.faustinopsy.com.
 
 ### Estrutura do Banco de Dados
 
-![Estrutura do Banco de Dados](img/class-banco.svg)
+![Estrutura do Banco de Dados](img/mongo.svg)
 
 ### Diagrama de Sequência
 

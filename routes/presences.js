@@ -6,7 +6,7 @@ const Presence = require('../models/Presence');
 router.post('/presences', async (req, res) => {
     try {
         const newPresence = new Presence({
-            id_usuario: req.body.id_usuario,
+            id_usuario: req.body.id,
             tipo: req.body.tipo,
             data_hora: new Date() 
         });

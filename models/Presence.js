@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const presenceSchema = new mongoose.Schema({
-    idUsuario: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    id_usuario: String,
     data_hora: Date,
     tipo: String
 });
 
-module.exports = mongoose.model('Presence', presenceSchema);
+const presence = mongoose.model('Presence', presenceSchema);
+module.exports = presence;

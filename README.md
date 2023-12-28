@@ -6,6 +6,17 @@ Esta aplicação permite o registro e o reconhecimento facial de alunos para o c
 
 A aplicação cliente comunica com o servidor por meio de uma API REST, utilizando JSON para o envio e recebimento de dados. A aplicação cliente utiliza HTML+ CSS + Javascript, e a aplicação no servidor utiliza Node+Express + MongoDb.
 
+## instalações
+Com o comando abaixo e o node deviamente instalado serão baixadas todas as dependencias do projeto
+
+```
+npm install   
+```
+e com o comando abaixo inicia o projeto
+```
+npm start   
+```
+
 
 A API do servidor só aceita requisições do domínio rest.faustinopsy.com.
 

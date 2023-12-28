@@ -28,17 +28,16 @@ router.get('/presences', async (req, res) => {
                 return res.status(404).json({ message: "Usuário não encontrado para o registro fornecido" });
             }
         }
-        console.log(req.query.data)
         if (req.query.data) {
             query['data_hora'] = { $gte: new Date(req.query.data) };
         }
-        console.log(query)
         const presencas = await Presence.find(query);
         const presencasResponse = [];
 
         for (const presenca of presencas) {
             const user = await User.findById(presenca.id_usuario);
             presencasResponse.push({
+                id: presenca._id.toString(),
                 nome: user ? user.nome : 'Usuário não encontrado',
                 registro: user ? user.registro : 'Registro não encontrado',
                 data_hora: presenca.data_hora,

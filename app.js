@@ -8,7 +8,30 @@ const presencesRouter = require('./routes/presencesRouters');
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = ['https://rest.faustinopsy.com', 'http://rest.faustinopsy.com'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin)) {
+          callback(null, true); 
+      } else {
+          callback(new Error('Origem não autorizada')); 
+      }
+  }
+};
+
+function corsErrorHandler(err, req, res, next) {
+  if (err.message === 'Origem não autorizada') {
+      res.status(403).json({ status: false , message: 'Acesso negado: origem não autorizada.' });
+  } else {
+      next(err); 
+  }
+}
+
+app.use(cors(corsOptions));
+app.use(corsErrorHandler);
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGO_URI, {

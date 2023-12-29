@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
-const { postPresence,getPresence,
-    putPresence } = require('../controllers/presenceController');
+const presencesRouter = express.Router();
+const PresenceController = require('../controllers/presenceController');
 
-router.get('/presences', getPresence);
-router.put('/presences/:id', putPresence);
-router.post('/presences', postPresence);
-module.exports = router;
+presencesRouter.post('/presences', PresenceController.postPresence);
+presencesRouter.get('/presences', PresenceController.getPresence);
+presencesRouter.put('/presences/:id', PresenceController.putPresence);
+
+module.exports = presencesRouter;

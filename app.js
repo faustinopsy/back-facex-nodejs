@@ -9,7 +9,7 @@ const presencesRouter = require('./routes/presencesRouters');
 const app = express();
 
 const allowedOrigins = ['https://rest.faustinopsy.com', 'http://rest.faustinopsy.com'];
-
+//const allowedOrigins = ['http://localhost:9000', 'localhost:9000'];
 const corsOptions = {
   origin: function (origin, callback) {
       if (allowedOrigins.includes(origin)) {

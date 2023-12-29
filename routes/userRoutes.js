@@ -28,6 +28,20 @@ router.get('/users/faces', async (req, res) => {
     }
 });
 
+router.delete('/users/:registro', async (req, res) => {
+    try {
+        const registro = req.params.registro;
+        const user = await User.findOneAndDelete({ registro: registro });
+
+        if (!user) {
+            return res.status(404).json({ message: "Usuário não encontrado com o registro fornecido" });
+        }
+
+        res.status(200).json({ message: "Usuário excluído com sucesso" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 router.post('/users', async (req, res) => {

@@ -58,9 +58,7 @@ router.put('/presences/:id', async (req, res) => {
         const presence = await Presence.findById(req.params.id);
         
         if (presence) {
-            console.log(presence)
             presence.data_hora = req.body.novaDataHora || presence.novaDataHora;
-            console.log(presence)
             const updatedPresence = await presence.save();
             res.json({ status: true, presenca: updatedPresence });
         } else {

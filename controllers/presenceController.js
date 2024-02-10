@@ -1,5 +1,5 @@
-const Presence = require('../models/Presence');
-const User = require('../models/User');
+const Presence = require('../model/Presence');
+const User = require('../model/User');
 
 class PresenceController {
     async postPresence(req, res) {

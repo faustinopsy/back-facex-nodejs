@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../model/User');
 const bcrypt = require('bcrypt');
 
 class UserController {
@@ -66,8 +66,8 @@ class UserController {
             if (!user) {
                 return res.status(400).json({ message: "Usuário não encontrado" });
             }
-
-            const validPassword = await bcrypt.compare(req.body.senha, user.senha);
+            
+            const validPassword = await user.verifyPassword(req.body.senha);
             if (!validPassword) {
                 return res.status(400).json({ message: "Senha incorreta" });
             }
@@ -76,6 +76,7 @@ class UserController {
             res.status(500).json({ message: err.message });
         }
     }
+    
 
     async getUsersRegister(req, res) {
         try {
@@ -83,21 +84,15 @@ class UserController {
             if (existingUser) {
                 return res.status(400).json({ message: "E-mail já cadastrado" });
             }
-
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(req.body.senha, salt);
-
-            const newUser = new User({
-                ...req.body,
-                senha: hashedPassword
-            });
-
+            const newUser = new User(req.body); 
+    
             const savedUser = await newUser.save();
             res.status(201).json({ status: true, usuario: savedUser });
         } catch (err) {
             res.status(500).json({ message: err.message });
         }
     }
+    
 }
 
 module.exports = new UserController();
